@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #4CAF50; /* Green background color */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Padding */
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between;
+            align-items: center; /* Center items vertically */
+        }
+        .header-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase; /* Uppercase text */
+        }
+        .logout-btn,
+        .add-item-btn {
+            background-color: transparent; /* Transparent background */
+            border: none; /* No border */
+            color: white; /* White text color */
+            cursor: pointer; /* Show pointer cursor on hover */
+            font-size: 16px;
+            text-decoration: none; /* No underline */
+            transition: color 0.3s; /* Smooth color transition on hover */
+        }
+        .logout-btn:hover,
+        .add-item-btn:hover {
+            color: #f8f9fa; /* Change text color on hover */
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-left">
+            <a href="/logout/">Logout </a>
+        </div>
+        <div class="header-title">
+            Store Manager
+        </div>
+        <div class="header-right">
+            <a href="/addlist/">Add List </a>
+        </div>
+    </div>
+    
+    
+    
+   
+
+<div class="container">
+    <h1>Welcome to Our Website!</h1>
+    {% comment %} <form method="POST"> 
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Search">
+    </form>
+    
+    {% if stocks %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for stock in stocks %}
+                <li>{{ stock.item_name }} - {{ stock.categories }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}} {% endcomment %}
+    <table>
+        <tr>
+            <th>Categories</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Action</th>
+        </tr>
+        {% for form in form %}
+        <tr>
+            <td>{{ form.categories }}</td>
+            <td>{{ form.item_name }}</td>
+            <td>{{ form.quantity }}</td>
+            <td><a href="{% url 'delete_view' pk=form.pk %}">Delete Item</a></td>
+            <td><a href="{% url 'update_view' pk=form.pk %}">Update Item</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
